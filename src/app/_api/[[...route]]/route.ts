@@ -66,4 +66,4 @@ app.get("/search", async (c) => {
 });
 
 export const GET = handle(app);
-export default app;
+export default app as never;
