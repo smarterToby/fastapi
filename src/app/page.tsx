@@ -126,7 +126,7 @@ export default function Home() {
                 stroke="#18181b"
                 name="ms"
                 label={{
-                  value: "Seiten",
+                  value: "Requests",
                   position: "insideBottom",
                   offset: 0,
                   dy: 10,
