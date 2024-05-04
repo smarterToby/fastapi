@@ -3,8 +3,13 @@ import { Hono } from "hono";
 import { env } from "hono/adapter";
 import { cors } from "hono/cors";
 import { handle } from "hono/vercel";
+import { PageConfig } from "next";
 
 export const runtime = "edge";
+
+export const config: PageConfig = {
+  runtime: "edge",
+};
 
 const app = new Hono().basePath("/api");
 
@@ -16,14 +21,13 @@ type EnvConfig = {
 app.use("/*", cors());
 app.get("/search", async (c) => {
   try {
-    const { UPSTASH_REDIS_REST_TOKEN, UPSTASH_REDIS_REST_URL }: EnvConfig =
-      env<EnvConfig>(c);
+    const { UPSTASH_REDIS_REST_TOKEN, UPSTASH_REDIS_REST_URL } = process.env;
 
     const start = performance.now();
 
     const redis = new Redis({
-      token: UPSTASH_REDIS_REST_TOKEN,
-      url: UPSTASH_REDIS_REST_URL,
+      token: UPSTASH_REDIS_REST_TOKEN!,
+      url: UPSTASH_REDIS_REST_URL!,
     });
 
     const query = c.req.query("q")?.toUpperCase();
@@ -65,5 +69,4 @@ app.get("/search", async (c) => {
   }
 });
 
-export const GET = handle(app);
-export default app as never;
+export default handle(app);

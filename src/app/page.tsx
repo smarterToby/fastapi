@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 
-const WORKERS_URL = "https://fastapi.tobiasreuss.workers.dev";
+const WORKERS_URL = "https://speedsearch.vercel.app" ||  "https://fastapi.tobiasreuss.workers.dev";
 
 export default function Home() {
   const [input, setInput] = useState<string>("");
