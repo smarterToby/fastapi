@@ -106,19 +106,41 @@ export default function Home() {
         </div>
         {chartData.length !== 0 && (
           <div>
-            <div className="h-px max-w-md w-full bg-zinc-200 mb-2" />
-            <p className="text-zink-600 text-lg max-w-prose text-center">
-              See the speed of your request in ms:
+            <div className="h-px w-full bg-zinc-200 mb-2" />
+            <p className="text-zink-600 text-lg max-w-prose text-center font-semibold">
+              Speed of your requests:
             </p>
-            <LineChart width={600} height={300} data={chartData}>
+            <LineChart
+              width={600}
+              height={335}
+              data={chartData}
+              margin={{ top: 50, right: 30, left: 20, bottom: 40 }}
+            >
               <Line
                 type="monotone"
                 className=""
                 dataKey="Speed"
                 stroke="#0f172a"
               />
-              <XAxis stroke="#18181b" name="ms" />
-              <YAxis stroke="#18181b" />
+              <XAxis
+                stroke="#18181b"
+                name="ms"
+                label={{
+                  value: "Seiten",
+                  position: "insideBottom",
+                  offset: 0,
+                  dy: 10,
+                }}
+              />
+              <YAxis
+                stroke="#18181b"
+                label={{
+                  value: "ms",
+                  angle: -90,
+                  position: "outsideLeft",
+                  dx: -10,
+                }}
+              />
               <Tooltip />
             </LineChart>
           </div>
