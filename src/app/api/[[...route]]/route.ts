@@ -7,10 +7,6 @@ import { PageConfig } from "next";
 
 export const runtime = "edge";
 
-export const config: PageConfig = {
-  runtime: "edge",
-};
-
 const app = new Hono().basePath("/api");
 
 type EnvConfig = {
